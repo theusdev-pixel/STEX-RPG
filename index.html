@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>STEX RPG</title>
+
+  <!-- SEO and social network metadata -->
+  <meta name="description" content="Servidor GTA SA:MP RPG - STEX. Entre, confira o status ao vivo e junte&#8209;se à nossa comunidade!" />
+  <meta property="og:title" content="STEX RPG" />
+  <meta property="og:description" content="Servidor GTA SA:MP RPG - STEX. Entre, confira o status ao vivo e junte&#8209;se à nossa comunidade!" />
+  <meta property="og:type" content="website" />
+  <!-- TODO: update URL below to your real domain -->
+  <meta property="og:url" content="https://seusite.example.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- move styles to external sheet for maintainability and caching -->
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- inline critical styles could stay here if necessary -->
+  <!-- the full stylesheet has been moved to styles.css -->
+
+  <div class="wrap">
+    <header>
+      <div class="logo">STEX</div>
+
+      <nav>
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre Nós</a>
+        <a href="#regras">Regras</a>
+      </nav>
+
+      <div class="header-actions">
+        <button id="accountBtn" class="pill">Minha Conta</button>
+        <button id="themeToggle" class="pill" title="Alternar tema">Tema</button>
+      </div>
+    </header>
+
+    <main class="hero" id="inicio">
+      <section>
+        <h1 class="title">VENHA FAZER PARTE DESSA FAMÍLIA</h1>
+        <p class="desc">
+          Venha fazer parte do mundo virtual que você sempre desejou!
+          No STEX GTA SA:MP RPG, a diversão não tem limites.
+          Mergulhe na adrenalina das ruas, onde sua imaginação ganha vida
+          em um universo cheio de possibilidades.
+        </p>
+
+        <div class="cta-row">
+          <button class="btn btn-primary" id="copyBtn" type="button">
+            Copiar IP
+          </button>
+
+          <a class="btn btn-ghost" id="discordBtn" href="#" target="_blank" rel="noopener">
+            Entrar no Discord
+          </a>
+
+          <button class="btn btn-ghost" id="refreshBtn" type="button">
+            Atualizar players
+          </button>
+
+          <span class="toast" id="toast">Copiado!</span>
+        </div>
+      </section>
+
+      <aside class="servers">
+        <div class="servers-top">
+          <h2>Servidores</h2>
+
+          <div class="badge" title="Status ao vivo">
+            <span class="dot" id="statusDot"></span>
+            <span id="statusText">Verificando…</span>
+          </div>
+        </div>
+
+        <div class="server-box">
+          <p class="server-name">Brasil Play Stex RPG</p>
+
+          <div class="meta">
+            <span id="playersText">Players: —</span>
+            <span>•</span>
+            <span id="maxText">Max: —</span>
+          </div>
+
+          <div class="ipline">
+            <div class="ip" id="ipText">181.215.45.74:7012</div>
+            <button class="btn btn-ghost" id="copyBtn2" type="button">Copiar</button>
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <!-- SEÇÃO: Sobre Nós -->
+    <section id="sobre" class="section-about">
+      <div class="container">
+        <h2>Sobre Nós</h2>
+        <p>O STEX RPG é um servidor apaixonado por GTA SA:MP, criado para jogadores que
+        buscam imersão e diversão sem limites. Nossa equipe trabalha 24/7 para
+        oferecer uma experiência estável e cheia de recursos.</p>
+      </div>
+    </section>
+
+    <!-- SEÇÃO: Regras -->
+    <section id="regras" class="section-rules">
+      <div class="container">
+        <h2>Regras do Servidor</h2>
+        <ul>
+          <li>Respeite os demais jogadores.</li>
+          <li>Evite uso de cheats ou exploits.</li>
+          <li>Siga as diretrizes de roleplay quando aplicável.</li>
+          <li>Qualquer dúvida entre em contato com a administração no Discord.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> STEX • Site modelo (você pode editar textos, links e cores)
+    </footer>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal hidden">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">✕</button>
+        
+        <!-- Login Form -->
+        <div id="loginForm" class="modal-section show">
+          <h2>Entrar na Conta</h2>
+          <form id="loginFormElement">
+            <input type="text" id="username" placeholder="Usuário" required />
+            <input type="password" id="password" placeholder="Senha" required />
+            <button type="submit" class="btn btn-primary" style="width:100%;">Entrar</button>
+          </form>
+          <p style="text-align:center; color:var(--muted); font-size:13px; margin-top:12px;">
+            Use suas credenciais do STEX RPG
+          </p>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profileSection" class="modal-section">
+          <h2>Perfil</h2>
+          <div id="profileInfo" style="text-align:center;">
+            <p style="font-size:18px; font-weight:700; margin:16px 0;">
+              <span id="profileNickname">—</span>
+            </p>
+            <p style="color:var(--muted); font-size:13px; margin-bottom:24px;">
+              Conectado desde <span id="profileTime">—</span>
+            </p>
+            <button id="logoutBtn" class="btn btn-ghost" style="width:100%;">Sair</button>
+          </div>
+        </div>
+
+        <div id="errorMsg" class="error-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript moved to a separate file. ensures caching and cleaner markup -->
+  <script src="app.js" defer></script>
+
+  <noscript>
+    <div class="toast show" style="position:fixed;top:10px;left:50%;transform:translateX(-50%);background:#ff4d4d;color:#fff;">
+      Este site funciona melhor com JavaScript habilitado.
+    </div>
+  </noscript>
+</body>
+</html>
